@@ -1,0 +1,26 @@
+<div class="w-full mx-auto min-h-[600px]">
+  
+  <header class="h-[55px] bg-blue-600">
+  </header>
+  <div class="py-12">
+    <h1 class="text-3xl text-center mb-[60px]">顧客対応管理アプリ</h1>
+    <div class="mx-auto w-[310px]">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <p  class="mb-2 text-sm"><%= f.label :employee_number, "社員番号" %></p>
+          <p><%= f.text_field :employee_number, autofocus: true, autocomplete: "off", inputmode: "numeric", class: "h-8 w-full border border-gray-600 px-2" %></p>
+        </div>
+
+        <div class="field mt-5">
+          <p class="mb-2 text-sm"><%= f.label :password, "パスワード" %></p>
+          <p><%= f.password_field :password, autocomplete: "current-password", class: "h-8 w-full border border-gray-600 px-2 outline-none" %></p>
+        </div>
+
+        <div class="actions mt-8">
+          <%= f.submit "ログイン", class: "h-9 w-full bg-blue-600 text-white font-bold cursor-pointer" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
