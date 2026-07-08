@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_01_063229) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_04_061902) do
   create_table "consultations", force: :cascade do |t|
-    t.integer "consultation_type"
+    t.integer "consultation_type", null: false
     t.datetime "consulted_at", null: false
     t.datetime "created_at", null: false
     t.text "current_situation"
