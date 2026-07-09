@@ -1,0 +1,5 @@
+ja:
+  activerecord:
+    attributes:
+      customer:
+        name: "氏名"

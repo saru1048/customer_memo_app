@@ -1,0 +1,41 @@
+<div class="w-full mx-auto h-screen bg-[#F7F7F7]">
+    <h1 class="text-3xl text-center py-[50px]">顧客登録</h1>
+    <div class="w-[50vw] mx-auto">
+        <%= form_with model: @customer, local: true do |f| %>
+
+            <% if @customer.errors[:name].any? %>
+                <div class="mb-6 text-red-600">
+                    ※氏名<%= @customer.errors[:name].first %>
+                </div>
+            <% end %>
+
+            <div class="flex justify-between mb-[50px]">
+                <%= f.label :name, class: "text-[24px]" do %>
+                    氏名<span class="text-[16px]">（必須）</span>
+                <% end %>
+                <div><%= f.text_field :name, class: "h-8 w-[30vw] border border-gray-600 px-2" %></div>
+            </div>
+            <div class="flex justify-between mb-[50px]">
+                <%= f.label :name_kana, class: "text-[24px]" do %>
+                    フリガナ<span class="text-[16px]">（任意）</span>
+                <% end %>
+                <div><%= f.text_field :name_kana, class: "h-8 w-[30vw] border border-gray-600 px-2" %></div>
+            </div>
+            <div class="flex justify-between mb-[50px]">
+                <%= f.label :phone_number, class: "text-[24px]" do %>
+                    電話番号<span class="text-[16px]">（任意）</span>
+                <% end %>
+
+                <div><%= f.text_field :phone_number, class: "h-8 w-[30vw] border border-gray-600 px-2" %></div>
+            </div>
+            <div class="flex justify-between mb-[50px]">
+                <%= f.label :memo, "補足メモ", class: "text-[24px]" %>
+                <div><%= f.text_area :memo, class: "h-[100px] w-[30vw] border border-gray-600 px-2" %></div>
+            </div>
+            <div class="flex justify-center">
+                <%= f.submit "登録", class: "h-[50px] w-[200px] bg-blue-600 text-white font-bold cursor-pointer" %>
+            </div>
+        <% end %>
+
+    </div>
+  </div>

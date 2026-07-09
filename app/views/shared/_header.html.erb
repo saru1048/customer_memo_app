@@ -1,0 +1,5 @@
+  <header class="h-[70px] bg-blue-600 text-white px-6 py-4 flex justify-end items-center">
+    <% if user_signed_in? %>
+        <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "cursor-pointer font-bold" %>
+    <% end %>
+  </header>
