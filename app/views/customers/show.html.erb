@@ -34,37 +34,37 @@
     <section class="consulted_before w-[80%] mx-auto">
         <h2 class="text-[32px] text-[#2F71F4] mb-[20px]">接客履歴</h2>
         <div class="mb-[50px] p-[40px] shadow-lg bg-white">
-            <table class="w-[90%] mx-auto mb-[20px]">
-                <thead class="border-b border-gray-300">
-                    <tr class="h-[48px]">
-                        <th class="w-[25%] px-[20px] py-[15px]">対応日</th>
-                        <th class="w-[25%] px-[20px] py-[15px]">相談種別</th>
-                        <th class="w-[25%] px-[20px] py-[15px]">ステータス</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-300 text-center">
-                    <tr class="h-[48px]">
-                        <td class="w-[25%]">2026年3月5日</td>
-                        <td class="w-[25%]">料金変更相談</td>
-                        <td class="w-[25%]">完了</td>
-                        <td><button class="bg-green-600 text-white font-bold px-[12px] py-[3px] shadow-lg shadow-green-600/60">詳細</button></td>
-                        <td><button class="bg-gray-600 text-white font-bold px-[12px] py-[3px] shadow-lg shadow-gray-600/60">編集</button></td>
-                    </tr>
-                    <tr class="h-[48px]">
-                        <td class="w-[25%]">2026年3月5日</td>
-                        <td class="w-[25%]">料金変更相談</td>
-                        <td class="w-[25%]">完了</td>
-                        <td><button class="bg-green-600 text-white font-bold px-[12px] py-[3px] shadow-lg shadow-green-600/60">詳細</button></td>
-                        <td><button class="bg-gray-600 text-white font-bold px-[12px] py-[3px] shadow-lg shadow-gray-600/60">編集</button></td>
-                    </tr>
-                </tbody>
-            </table>
+            <% if @customer.consultations.any? %>
+                <table class="w-[90%] mx-auto mb-[20px]">
+                    <thead class="border-b border-gray-300">
+                        <tr class="h-[48px]">
+                            <th class="w-[25%] px-[20px] py-[15px]">対応日</th>
+                            <th class="w-[25%] px-[20px] py-[15px]">相談種別</th>
+                            <th class="w-[25%] px-[20px] py-[15px]">ステータス</th>
+                            <th colspan="2" class="px-[20px] py-[15px]"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-300 text-center">
+                        <% @customer.consultations.each do |consultation| %>
+                            <tr class="h-[48px]">
+                                <td class="w-[25%]"><%= consultation.consulted_at.strftime("%Y年%m月%d日") %></td>
+                                <td class="w-[25%]"><%= consultation.consultation_type %></td>
+                                <td class="w-[25%]"><%= consultation.status %></td>
+                                <td><%= link_to "詳細", consultation_path(consultation), class: "bg-green-600 text-white font-bold px-[12px] py-[3px] shadow-lg shadow-green-600/60"%></td>
+                                <td><%= link_to "編集", edit_consultation_path(consultation), class: "bg-gray-600 text-white font-bold px-[12px] py-[3px] shadow-lg shadow-gray-600/60"%></td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            <% else %>
+                接客履歴はまだありません
+            <% end %>
             <div class="flex justify-center text-center">
-                <a class="h-[50px] w-[200px] bg-blue-600 text-white font-bold leading-[50px] cursor-pointer shadow-lg shadow-blue-600/60" href="#">接客記録作成</a>
+                <%= link_to "接客記録作成", new_customer_consultation_path(@customer), class: "h-[50px] w-[200px] bg-blue-600 text-white font-bold leading-[50px] cursor-pointer shadow-lg shadow-blue-600/60" %>
             </div>
         </div>
     </section>
     <div class="flex justify-center text-center my-[20px]">
-        <a class="h-[50px] w-[200px] bg-red-600 text-white font-bold leading-[50px] cursor-pointer shadow-lg shadow-red-600/60" href="#">顧客削除</a>
+        <%= button_to "顧客削除", customer_path(@customer), method: :delete, class: "h-[50px] w-[200px] bg-red-600 text-white font-bold leading-[50px] cursor-pointer shadow-lg shadow-red-600/60" %>
     </div>
 </div>
