@@ -1,4 +1,4 @@
-<div class="w-full mx-auto h-full bg-[#F7F7F7]">
+<div class="w-full mx-auto min-h-full bg-[#F7F7F7] pb-[100px]">
     <h1 class="text-3xl text-center py-[50px]">顧客詳細</h1>
 
     <section class="customer_info w-[80%] mx-auto">
@@ -48,8 +48,8 @@
                         <% @customer.consultations.each do |consultation| %>
                             <tr class="h-[48px]">
                                 <td class="w-[25%]"><%= consultation.consulted_at.strftime("%Y年%m月%d日") %></td>
-                                <td class="w-[25%]"><%= consultation.consultation_type %></td>
-                                <td class="w-[25%]"><%= consultation.status %></td>
+                                <td class="w-[25%]"><%= t("enums.consultation.consultation_type.#{consultation.consultation_type}") %></td>
+                                <td class="w-[25%]"><%= t("enums.consultation.status.#{consultation.status}") %></td>
                                 <td><%= link_to "詳細", consultation_path(consultation), class: "bg-green-600 text-white font-bold px-[12px] py-[3px] shadow-lg shadow-green-600/60"%></td>
                                 <td><%= link_to "編集", edit_consultation_path(consultation), class: "bg-gray-600 text-white font-bold px-[12px] py-[3px] shadow-lg shadow-gray-600/60"%></td>
                             </tr>
